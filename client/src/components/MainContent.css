@@ -1,0 +1,258 @@
+.main-content {
+  flex: 1;
+  background-color: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  transition: margin-left 0.3s ease, background-color 0.3s ease;
+  overflow: hidden;
+}
+
+.main-content.sidebar-collapsed {
+  margin-left: 0;
+}
+
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-primary);
+  min-height: 60px;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.page-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.privacy-indicator {
+  font-size: 12px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.3s ease;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.last-edited {
+  font-size: 12px;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.header-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.header-btn:hover {
+  background-color: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.header-btn.star-btn {
+  font-size: 18px;
+}
+
+.header-btn.starred {
+  color: #fbbf24;
+}
+
+.header-btn.starred:hover {
+  color: #f59e0b;
+}
+
+.content-area {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  background-color: var(--bg-primary);
+  transition: background-color 0.3s ease;
+}
+
+.welcome-section {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.welcome-emoji {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background-color: var(--bg-hover);
+  border: 1px solid var(--border-color-light);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.action-btn:hover {
+  background-color: var(--border-color-light);
+  color: var(--text-primary);
+}
+
+.btn-icon {
+  font-size: 12px;
+}
+
+.welcome-title {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  line-height: 1.2;
+  transition: color 0.3s ease;
+}
+
+.welcome-content {
+  max-width: 700px;
+}
+
+.checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.checklist-item.completed {
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.checklist-item:not(.completed) {
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.checkmark {
+  color: var(--accent-color);
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 2px;
+  transition: color 0.3s ease;
+}
+
+.checkbox {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-top: 2px;
+  transition: color 0.3s ease;
+}
+
+.checklist-text {
+  flex: 1;
+}
+
+.hand-emoji {
+  font-size: 16px;
+  margin-left: 8px;
+}
+
+.checklist-item.toggle {
+  cursor: pointer;
+}
+
+.toggle-arrow {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-left: 8px;
+  margin-right: 8px;
+  transition: color 0.3s ease;
+}
+
+
+/* Scrollbar styling */
+.content-area::-webkit-scrollbar {
+  width: 8px;
+}
+
+.content-area::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  transition: background-color 0.3s ease;
+}
+
+.content-area::-webkit-scrollbar-thumb {
+  background: var(--border-color-light);
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.content-area::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .content-header {
+    padding: 12px 16px;
+  }
+  
+  .content-area {
+    padding: 16px;
+  }
+  
+  .welcome-title {
+    font-size: 32px;
+  }
+  
+  .header-right {
+    gap: 8px;
+  }
+  
+  .last-edited {
+    display: none;
+  }
+}

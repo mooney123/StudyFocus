@@ -1,0 +1,1082 @@
+.study-together-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  height: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Main layout: left panel | center box | right panel */
+.study-together-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 560px) minmax(0, 1fr);
+  gap: 20px;
+  flex: 1;
+  overflow: hidden;
+  padding: 24px;
+  align-items: start;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Central main box (Solo Study Session style) */
+.study-together-main-wrap {
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.study-together-main-box {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 0;
+  width: 100%;
+  max-width: 560px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.study-together-box-title {
+  margin: 0 0 4px 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.study-together-box-subtitle {
+  margin: 0 0 20px 0;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.study-together-session-setup {
+  display: grid;
+  gap: 16px;
+}
+
+.study-together-box-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+  justify-content: center;
+}
+
+/* Side panels (Pending left, Upcoming right) */
+.study-together-side-panel {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px;
+  min-height: 200px;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.side-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.side-panel-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.side-panel-badge {
+  background: var(--accent-color);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 22px;
+  height: 22px;
+  border-radius: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+}
+
+.side-panel-message {
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+
+.side-panel-empty {
+  text-align: center;
+  padding: 24px 12px;
+  color: var(--text-secondary);
+}
+
+.side-panel-empty-icon {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 8px;
+  opacity: 0.7;
+}
+
+.side-panel-empty p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.side-panel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.side-panel-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 12px;
+  transition: border-color 0.2s ease, background-color 0.3s ease;
+}
+
+.side-panel-card.request-card-mini {
+  border-left: 3px solid var(--warning-color);
+}
+
+.side-panel-card.session-card-mini.confirmed,
+.side-panel-card.session-card-mini.accepted {
+  border-left: 3px solid var(--success-color);
+}
+
+.side-panel-card.session-card-mini.pending {
+  border-left: 3px solid var(--warning-color);
+}
+
+.side-panel-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.side-panel-card-meta {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+}
+
+.side-panel-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.action-btn.mini {
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.status-badge.mini {
+  padding: 4px 8px;
+  font-size: 11px;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+/* Legacy header (hidden by layout; keep for any refs) */
+.study-together-header {
+  display: none;
+}
+
+.study-together-header .header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.study-together-header .header-text h1 {
+  margin: 0 0 8px 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.study-together-header .header-text p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.study-together-header .header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.schedule-btn {
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.schedule-btn.primary {
+  background: var(--accent-color);
+  color: #ffffff;
+}
+
+.schedule-btn.primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Test Session Button - Secondary style */
+.test-session-btn {
+  border: 1px solid var(--border-color);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.test-session-btn.secondary {
+  background: transparent;
+  color: var(--text-secondary);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.test-session-btn.secondary:hover:not(:disabled) {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border-color: var(--border-color-light);
+  transform: translateY(-1px);
+}
+
+.test-session-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Navigation */
+.study-together-nav {
+  display: flex;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0;
+  overflow-x: auto;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.study-together-nav .nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  padding: 0 24px;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 3px solid transparent;
+}
+
+.nav-btn:hover {
+  color: var(--text-primary);
+  background-color: var(--bg-hover);
+}
+
+.nav-btn.active {
+  color: var(--accent-color);
+  border-bottom-color: var(--accent-color);
+  background-color: var(--info-bg);
+}
+
+/* Section Messages */
+.section-message {
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  animation: fadeIn 0.3s ease-in;
+  transition: opacity 0.3s ease-out;
+}
+
+.section-message.success {
+  background-color: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+  border: 1px solid #22c55e;
+}
+
+.section-message.error {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: var(--error-color);
+  border: 1px solid var(--error-color);
+  transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Content */
+.study-together-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Schedule Section */
+.schedule-section {
+  width: 100%;
+}
+
+/* Quick Schedule */
+.quick-schedule {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  border-radius: 12px;
+  padding: 32px;
+}
+
+.quick-schedule h2 {
+  margin: 0 0 8px 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.quick-schedule .section-description {
+  margin: 0 0 24px 0;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.quick-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.quick-option {
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  transition: all 0.2s ease, border-color 0.3s ease, background-color 0.3s ease;
+  border-radius: 8px;
+  padding: 24px;
+  cursor: pointer;
+  text-align: center;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.quick-option:hover {
+  border-color: var(--accent-color);
+  background-color: var(--bg-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.quick-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.quick-option span {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.quick-option small {
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+  font-size: 14px;
+}
+
+/* Pending Section */
+.pending-section h2 {
+  margin: 0 0 24px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.requests-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.request-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.2s ease;
+  border-left: 4px solid var(--warning-color);
+}
+
+.request-card:hover {
+  border-color: var(--warning-color);
+}
+
+.request-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.request-info h3 {
+  margin: 0 0 4px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.request-info p {
+  margin: 0;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+  font-size: 14px;
+}
+
+.request-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.request-badge.pending {
+  background-color: rgba(245, 158, 11, 0.2);
+  color: var(--warning-color);
+  border: 1px solid var(--warning-color);
+  transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.request-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Upcoming Section */
+.upcoming-section h2 {
+  margin: 0 0 24px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.empty-state h3 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.empty-state p {
+  margin: 0 0 24px 0;
+  font-size: 16px;
+}
+
+.schedule-first-btn {
+  background: var(--accent-color);
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.schedule-first-btn:hover {
+  background: var(--accent-hover);
+}
+
+/* Sessions List */
+.sessions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.session-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.2s ease;
+}
+
+.session-card:hover {
+  border-color: var(--accent-color);
+}
+
+.session-card.confirmed {
+  border-left: 4px solid var(--success-color);
+}
+
+.session-card.pending {
+  border-left: 4px solid var(--warning-color);
+}
+
+.session-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.session-info h3 {
+  margin: 0 0 4px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.session-info p {
+  margin: 0;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+  font-size: 14px;
+}
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-badge.confirmed {
+  background-color: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+  border: 1px solid #22c55e;
+}
+
+.status-badge.pending {
+  background-color: rgba(245, 158, 11, 0.2);
+  color: var(--warning-color);
+  border: 1px solid var(--warning-color);
+  transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.session-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-value {
+  font-size: 14px;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+  font-weight: 500;
+}
+
+.session-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.action-btn.primary {
+  background: var(--accent-color);
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.action-btn.primary:hover {
+  background: var(--accent-hover);
+}
+
+.action-btn.secondary {
+  background: transparent;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+  border: 1px solid #404040;
+}
+
+.action-btn.secondary:hover {
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+  border-color: var(--text-tertiary);
+}
+
+.action-btn.danger {
+  background: transparent;
+  color: var(--error-color);
+  border: 1px solid var(--error-color);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.action-btn.danger:hover {
+  background: #ef4444;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--overlay-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 40px 20px;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.2s ease;
+  overflow-y: auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.schedule-modal {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 650px;
+  max-height: calc(100vh - 80px);
+  margin: auto;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: relative;
+  /* Ensure modal itself is properly sized */
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  border-bottom: 1px solid var(--border-color);
+  transition: border-color 0.3s ease;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  color: var(--text-primary);
+  background-color: var(--bg-hover);
+}
+
+.modal-content {
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  min-width: 0;
+  display: block;
+  scrollbar-gutter: stable;
+  /* Content wrapper will have the padding to isolate scrollbar */
+  /* scrollbar-gutter reserves space for scrollbar to prevent layout shift */
+}
+
+.modal-content-inner {
+  padding: 32px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: var(--border-color-light);
+}
+
+.form-group {
+  margin: 0 0 24px 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 0 24px 0;
+  padding: 0;
+  align-items: start;
+  min-width: 0;
+}
+
+.form-row > .form-group {
+  min-width: 0;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.form-row > .form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-input,
+.form-select {
+  width: 100%;
+  padding: 14px 16px;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color-light);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 15px;
+  transition: all 0.2s ease, background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.form-select {
+  cursor: pointer;
+  padding-right: 2.25rem;
+}
+
+.form-select:hover {
+  background-color: var(--bg-hover);
+  border-color: var(--text-tertiary);
+}
+
+/* Study Together: dropdown arrow moved slightly left for better balance */
+.study-together-container select,
+.study-together-container .form-select {
+  padding-right: 2.25rem;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 4.5 L6 7.5 L9 4.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+}
+
+.study-together-container select:hover,
+.study-together-container .form-select:hover {
+  background-color: var(--bg-hover);
+  border-color: var(--text-tertiary);
+}
+
+.form-input:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-input::placeholder {
+  color: var(--text-tertiary);
+  transition: color 0.3s ease;
+}
+
+.form-help {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+  font-style: italic;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 24px 32px;
+  border-top: 1px solid var(--border-color);
+  transition: border-color 0.3s ease;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.btn-cancel {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color-light);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-cancel:hover {
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+  border-color: var(--text-tertiary);
+}
+
+.btn-schedule {
+  background: var(--accent-color);
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease, background-color 0.3s ease;
+}
+
+.btn-schedule:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.btn-schedule:disabled {
+  background: var(--bg-hover);
+  color: var(--text-tertiary);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Responsive: stack panels above/below main box; main box first on small screens */
+@media (max-width: 1024px) {
+  .study-together-layout {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  .study-together-main-wrap {
+    order: -1;
+  }
+
+  .study-together-side-panel {
+    max-height: 280px;
+  }
+
+  .study-together-main-box {
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .study-together-layout {
+    padding: 12px;
+    gap: 16px;
+  }
+
+  .study-together-main-box {
+    padding: 20px;
+  }
+
+  .study-together-box-actions {
+    flex-direction: column;
+  }
+
+  .schedule-btn,
+  .test-session-btn {
+    width: 100%;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .side-panel-card-actions {
+    flex-direction: column;
+  }
+
+  .action-btn.mini {
+    width: 100%;
+  }
+
+  .modal-overlay {
+    padding: 20px 16px;
+    align-items: flex-start;
+    padding-top: 40px;
+  }
+
+  .schedule-modal {
+    max-width: 100%;
+    border-radius: 12px;
+    max-height: calc(100vh - 40px);
+    margin: 0 auto;
+  }
+
+  .modal-header {
+    padding: 20px 24px;
+  }
+
+  .modal-content-inner {
+    padding: 24px;
+  }
+
+  .modal-footer {
+    padding: 20px 24px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+}

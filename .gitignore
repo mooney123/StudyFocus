@@ -1,0 +1,49 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Build outputs
+client/build/
+dist/
+
+# Logs
+*.log
+server.log
+server.pid
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+client/.env
+client/.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+.cursor/
+*.swp
+*.swo
+
+# User data and uploads
+server/data/
+server/uploads/
+.claude/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Misc
+*.pid
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+

@@ -1,0 +1,221 @@
+/* Simple Message Modal Overlay */
+.simple-message-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.2s ease;
+}
+
+.simple-message-overlay.light {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Simple Message Modal */
+.simple-message-modal {
+  background-color: var(--bg-secondary, #2f3437);
+  border: 1px solid var(--border-color-light, #4b5563);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.3s ease;
+  overflow: hidden;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.simple-message-overlay.light .simple-message-modal {
+  background-color: #ffffff;
+  border-color: #e5e7eb;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Header */
+.simple-message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-color, #373c3f);
+  transition: border-color 0.3s ease;
+}
+
+.simple-message-overlay.light .simple-message-header {
+  border-bottom-color: #e5e7eb;
+}
+
+.simple-message-title {
+  color: var(--text-primary, #ffffff);
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.simple-message-overlay.light .simple-message-title {
+  color: #111827;
+}
+
+.simple-message-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary, #9ca3af);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  line-height: 1;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.simple-message-close:hover {
+  background-color: var(--bg-hover, #373c3f);
+  color: var(--text-primary, #ffffff);
+}
+
+.simple-message-overlay.light .simple-message-close:hover {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+/* Content */
+.simple-message-content {
+  padding: 24px;
+  flex: 1;
+}
+
+.simple-message-text {
+  color: var(--text-primary, #ffffff);
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.simple-message-overlay.light .simple-message-text {
+  color: #374151;
+}
+
+/* Email Link */
+.message-email {
+  color: var(--accent-color, #3b82f6);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  cursor: pointer;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  word-break: break-all;
+}
+
+.message-email:hover {
+  color: var(--accent-hover, #60a5fa);
+  text-decoration: underline;
+}
+
+.simple-message-overlay.light .message-email {
+  color: #2563eb;
+}
+
+.simple-message-overlay.light .message-email:hover {
+  color: #3b82f6;
+}
+
+/* Footer */
+.simple-message-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border-color, #373c3f);
+  display: flex;
+  justify-content: flex-end;
+  transition: border-color 0.3s ease;
+}
+
+.simple-message-overlay.light .simple-message-footer {
+  border-top-color: #e5e7eb;
+}
+
+.simple-message-button {
+  padding: 10px 20px;
+  background-color: var(--accent-color, #3b82f6);
+  color: #ffffff;
+  border: 1px solid var(--accent-color, #3b82f6);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.simple-message-button:hover {
+  background-color: var(--accent-hover, #2563eb);
+  border-color: var(--accent-hover, #2563eb);
+}
+
+.simple-message-overlay.light .simple-message-button {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.simple-message-overlay.light .simple-message-button:hover {
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .simple-message-modal {
+    width: 95%;
+    max-width: none;
+  }
+
+  .simple-message-header,
+  .simple-message-content,
+  .simple-message-footer {
+    padding: 16px;
+  }
+
+  .simple-message-title {
+    font-size: 18px;
+  }
+
+  .simple-message-text {
+    font-size: 14px;
+  }
+}
+

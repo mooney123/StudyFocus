@@ -1,0 +1,341 @@
+.home-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: var(--bg-primary);
+  transition: background 0.3s ease;
+}
+
+/* Header */
+.home-header {
+  margin-bottom: 48px;
+  padding-top: 20px;
+}
+
+.welcome-section {
+  margin-bottom: 40px;
+  text-align: center;
+  padding: 32px 24px;
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-hover) 100%);
+  border: 1px solid var(--border-color-light);
+  transition: background 0.3s ease, border-color 0.3s ease;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.welcome-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+  margin: 0 0 16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.welcome-subtitle {
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.5;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.quick-stats {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.stat-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  transition: background 0.3s ease, border-color 0.3s ease;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  min-width: 120px;
+  transition: all 0.2s ease;
+}
+
+.stat-card:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-color-light);
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+  font-weight: 500;
+}
+
+/* Section Titles */
+.home-container .section-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+  margin: 0 0 24px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Quick Access Section */
+.quick-access-section {
+  margin-bottom: 48px;
+}
+
+.quick-access-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.quick-access-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  transition: background 0.3s ease, border-color 0.3s ease;
+  border-radius: 8px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+}
+
+.quick-access-card:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-color-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+  background: var(--bg-tertiary) !important;
+  border: 1px solid var(--bg-tertiary);
+}
+
+.card-content {
+  flex: 1;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+  margin: 0 0 4px 0;
+}
+
+.card-description {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+  margin: 0 0 6px 0;
+  line-height: 1.4;
+}
+
+.card-stats {
+  font-size: 0.75rem;
+  color: #059669;
+  font-weight: 500;
+}
+
+.card-arrow {
+  font-size: 1.2rem;
+  color: var(--text-tertiary);
+  transition: color 0.3s ease;
+  transition: all 0.2s ease;
+}
+
+.quick-access-card:hover .card-arrow {
+  color: #059669;
+  transform: translateX(2px);
+}
+
+/* Coming Soon Section */
+.coming-soon-section {
+  margin-bottom: 48px;
+}
+
+.coming-soon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.coming-soon-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  transition: background 0.3s ease, border-color 0.3s ease;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  opacity: 0.7;
+  position: relative;
+}
+
+.coming-soon-badge {
+  background: #373c3f;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Study Tips Section */
+.study-tips-section {
+  margin-bottom: 40px;
+}
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.tip-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  transition: background 0.3s ease, border-color 0.3s ease;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.tip-card:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-color-light);
+}
+
+.tip-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.tip-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+  margin: 0 0 8px 0;
+}
+
+.tip-description {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .home-container {
+    padding: 16px;
+  }
+  
+  .welcome-title {
+    font-size: 2rem;
+  }
+  
+  .welcome-subtitle {
+    font-size: 1rem;
+  }
+  
+  .quick-stats {
+    justify-content: center;
+  }
+  
+  .stat-card {
+    min-width: 100px;
+    padding: 16px;
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+  
+  .quick-access-grid,
+  .coming-soon-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tips-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  
+  .quick-access-card,
+  .coming-soon-card,
+  .tip-card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-section {
+    padding: 20px 12px;
+    margin-bottom: 24px;
+  }
+
+  .welcome-title {
+    font-size: 2rem;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .welcome-subtitle {
+    font-size: 1rem;
+  }
+  
+  .quick-stats {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 16px;
+  }
+  
+  .stat-card {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .tips-grid {
+    grid-template-columns: 1fr;
+  }
+}

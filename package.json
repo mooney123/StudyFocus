@@ -1,0 +1,35 @@
+{
+  "name": "studyfocus",
+  "version": "1.0.0",
+  "description": "A Notion-like study management app",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon server/index.js",
+    "client": "cd client && npm start",
+    "build": "cd client && npm run build",
+    "install-all": "npm install && cd client && npm install"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^4.18.2",
+    "multer": "^2.0.2",
+    "pg": "^8.21.0",
+    "socket.io": "^4.8.3"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "study",
+    "productivity",
+    "notion",
+    "react",
+    "node"
+  ],
+  "author": "Mooney Founas",
+  "license": "MIT"
+}

@@ -1,0 +1,117 @@
+.d3-chart-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.d3-chart-container svg {
+  display: block;
+}
+
+.d3-chart-container .x-axis path,
+.d3-chart-container .y-axis path {
+  stroke: #4b5563;
+  stroke-width: 1;
+}
+
+.d3-chart-container .x-axis line,
+.d3-chart-container .y-axis line {
+  stroke: #4b5563;
+  stroke-width: 1;
+}
+
+.d3-tooltip {
+  position: fixed;
+  background: rgba(31, 41, 55, 0.95);
+  border: 1px solid #4b5563;
+  border-radius: 8px;
+  padding: 12px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 10000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  max-width: 200px;
+  white-space: nowrap;
+}
+
+.tooltip-content {
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.tooltip-content strong {
+  color: #3b82f6;
+  font-size: 14px;
+}
+
+.chart-empty {
+  text-align: center;
+  padding: 48px 24px;
+  color: #9ca3af;
+  font-size: 1.1rem;
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 12px;
+}
+
+/* Pie Chart Legend - positioned below chart content, no overlap */
+.pie-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color, #374151);
+  clear: both;
+}
+
+.pie-chart-legend .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.pie-chart-legend .legend-color {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.pie-chart-legend .legend-text {
+  color: var(--text-secondary, #e5e7eb);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .d3-chart-container {
+    overflow-x: auto;
+  }
+  
+  .d3-chart-container svg {
+    min-width: 600px;
+  }
+
+  .pie-chart-legend {
+    justify-content: center;
+    margin-top: 20px;
+    padding-top: 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .pie-chart-legend {
+    justify-content: flex-start;
+  }
+}
+
