@@ -11,24 +11,24 @@ const https = require('https');
 const { Server } = require('socket.io');
 const { Pool } = require('pg');
 
-// PostgreSQL connection
+// Database connection
 const db = new Pool({
-  host: '127.0.0.1',
-  port: 5432,
-  database: 'studyfocus',
-  user: 'mooneyfounas',
-  password: ''
+  host: process.env.DB_HOST || '127.0.0.1',
+  port: process.env.DB_PORT || 5432,
+  database: process.env.DB_NAME || 'studyfocus',
+  user: process.env.DB_USER || 'mooneyfounas',
+  password: process.env.DB_PASSWORD || ''
 });
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: process.env.CLIENT_ORIGIN || "http://localhost:3000",
     methods: ["GET", "POST"]
   }
 });
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const DATA_DIR = path.join(__dirname, 'data');
 const USERS_FILE = path.join(DATA_DIR, 'users.json');
 
@@ -139,7 +139,7 @@ const verifyToken = (token) => {
   }
 };
 
-// Authentication middleware — looks up user in PostgreSQL
+// Authentication middleware
 const authenticateUser = async (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -188,7 +188,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// Authentication routes — powered by PostgreSQL
+// Authentication routes
 app.post('/api/auth/signup', async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -277,7 +277,7 @@ app.get('/api/auth/verify', authenticateUser, (req, res) => {
 app.get('/api/ai/user-data', authenticateUser, async (req, res) => {
   const userId = req.user.id;
   try {
-    // Fetch study sessions from PostgreSQL
+    // Fetch study sessions from database
     const sessionsResult = await db.query(
       'SELECT * FROM study_sessions WHERE user_id = $1 ORDER BY start_time DESC',
       [userId]
@@ -478,7 +478,7 @@ app.get('/api/leaderboard', authenticateUser, async (req, res) => {
         continue;
       }
 
-      // Check privacy settings from PostgreSQL
+      // Check privacy settings from database
       const settingsResult = await db.query('SELECT privacy_show_study_stats FROM user_settings WHERE user_id = $1', [uid]);
       const showStudyStats = settingsResult.rows[0]?.privacy_show_study_stats !== false;
       
@@ -487,7 +487,7 @@ app.get('/api/leaderboard', authenticateUser, async (req, res) => {
         continue; // Skip this user entirely - they will not appear on leaderboard for anyone
       }
       
-      // Get study session data from PostgreSQL
+      // Get study session data from database
       const sessionsResult = await db.query(
         'SELECT * FROM study_sessions WHERE user_id = $1',
         [uid]
@@ -559,7 +559,7 @@ const ensureUserSettings = async (userId) => {
   `, [userId]);
 };
 
-// Helper: read settings from PostgreSQL and return in legacy JSON shape
+// Helper: read settings from database and return in legacy JSON shape
 const getSettingsForUser = async (userId) => {
   await ensureUserSettings(userId);
   const result = await db.query('SELECT * FROM user_settings WHERE user_id = $1', [userId]);
@@ -578,7 +578,7 @@ const getSettingsForUser = async (userId) => {
   };
 };
 
-// Helper: build a study-session response object from PostgreSQL
+// Helper: build a study-session response object from database
 const getStudySessionData = async (userId) => {
   const sessionsResult = await db.query(
     `SELECT * FROM study_sessions WHERE user_id = $1 ORDER BY start_time DESC`,
@@ -708,7 +708,7 @@ app.get('/api/:tab', authenticateUser, async (req, res) => {
   const { tab } = req.params;
   const userId = req.user.id;
 
-  // Settings are now served from PostgreSQL
+  // Settings are now served from database
   if (tab === 'settings') {
     try {
       const settings = await getSettingsForUser(userId);
@@ -719,7 +719,7 @@ app.get('/api/:tab', authenticateUser, async (req, res) => {
     }
   }
 
-  // Study sessions are now served from PostgreSQL
+  // Study sessions are now served from database
   if (tab === 'study-session') {
     try {
       const data = await getStudySessionData(userId);
@@ -754,7 +754,7 @@ app.put('/api/:tab', authenticateUser, async (req, res) => {
   const userId = req.user.id;
   const data = req.body;
 
-  // Settings are now saved to PostgreSQL
+  // Settings are now saved to database
   if (tab === 'settings') {
     try {
       await ensureUserSettings(userId);
@@ -789,7 +789,7 @@ app.put('/api/:tab', authenticateUser, async (req, res) => {
     }
   }
 
-  // Study sessions are now saved to PostgreSQL
+  // Study sessions are now saved to database
   if (tab === 'study-session') {
     try {
       await saveStudySessionData(userId, data);
@@ -806,7 +806,7 @@ app.put('/api/:tab', authenticateUser, async (req, res) => {
   res.json({ success: true, message: 'Data saved successfully' });
 });
 
-// Onboarding tracking endpoint — PostgreSQL
+// Onboarding tracking endpoint
 app.get('/api/onboarding/status', authenticateUser, async (req, res) => {
   try {
     await ensureUserSettings(req.user.id);
@@ -830,7 +830,7 @@ app.put('/api/onboarding/status', authenticateUser, async (req, res) => {
   }
 });
 
-// Welcome modal tracking endpoint — PostgreSQL
+// Welcome modal tracking endpoint
 app.get('/api/welcome/status', authenticateUser, async (req, res) => {
   try {
     await ensureUserSettings(req.user.id);
@@ -2089,7 +2089,7 @@ app.post('/api/friends/send-request', authenticateUser, async (req, res) => {
   }
 
   try {
-    // Find user by email in PostgreSQL
+    // Find user by email in database
     const userResult = await db.query(
       'SELECT id, name, email FROM users WHERE LOWER(email) = LOWER($1)',
       [email.trim()]
