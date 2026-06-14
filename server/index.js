@@ -2802,6 +2802,15 @@ io.on('connection', (socket) => {
   });
 });
 
+// Serve React frontend in production
+const clientBuild = path.join(__dirname, 'public');
+if (fs.existsSync(clientBuild)) {
+  app.use(express.static(clientBuild));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(clientBuild, 'index.html'));
+  });
+}
+
 // Start server
 server.listen(PORT, () => {
   console.log(`🚀 StudyFocus server running on port ${PORT}`);

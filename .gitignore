@@ -5,6 +5,7 @@ server/node_modules/
 
 # Build outputs
 client/build/
+server/public/
 dist/
 
 # Logs
