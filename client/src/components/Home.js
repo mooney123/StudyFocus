@@ -21,13 +21,13 @@ const Home = ({ user, setActiveTab }) => {
       if (!token) return;
 
       const [studyResponse, friendsResponse, scheduleResponse] = await Promise.all([
-        fetch('http://localhost:3001/api/study-session', {
+        fetch('/api/study-session', {
           headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }
         }),
-        fetch('http://localhost:3001/api/friends', {
+        fetch('/api/friends', {
           headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }
         }),
-        fetch('http://localhost:3001/api/schedule-planner', {
+        fetch('/api/schedule-planner', {
           headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }
         })
       ]);

@@ -14,7 +14,7 @@ export const useUnreadCount = () => {
         return;
       }
 
-      const response = await fetch('http://localhost:3001/api/messages/unread-count', {
+      const response = await fetch('/api/messages/unread-count', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

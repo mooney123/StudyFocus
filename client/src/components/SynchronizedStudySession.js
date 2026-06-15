@@ -80,7 +80,7 @@ const SynchronizedStudySession = forwardRef(({ session, sessionState, user, onEn
         return;
       }
       
-      const response = await fetch(`http://localhost:3001/api/study-together/chat/${session.id}`, {
+      const response = await fetch(`/api/study-together/chat/${session.id}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -157,7 +157,7 @@ const SynchronizedStudySession = forwardRef(({ session, sessionState, user, onEn
     setChatInput('');
     
     try {
-      const response = await fetch('http://localhost:3001/api/study-together/chat/send', {
+      const response = await fetch('/api/study-together/chat/send', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -372,7 +372,7 @@ const SynchronizedStudySession = forwardRef(({ session, sessionState, user, onEn
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:3001/api/study-together/blackboard/${session.id}`, {
+      const response = await fetch(`/api/study-together/blackboard/${session.id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -410,7 +410,7 @@ const SynchronizedStudySession = forwardRef(({ session, sessionState, user, onEn
       
       const token = localStorage.getItem('token');
       pendingSaveRef.current = true;
-      const response = await fetch(`http://localhost:3001/api/study-together/blackboard/${session.id}`, {
+      const response = await fetch(`/api/study-together/blackboard/${session.id}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -446,7 +446,7 @@ const SynchronizedStudySession = forwardRef(({ session, sessionState, user, onEn
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:3001/api/study-together/blackboard/${session.id}/action`, {
+      const response = await fetch(`/api/study-together/blackboard/${session.id}/action`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -693,7 +693,7 @@ const SynchronizedStudySession = forwardRef(({ session, sessionState, user, onEn
   const updateServerState = async (currentTimeLeft) => {
     try {
       const token = localStorage.getItem('token');
-      await fetch('http://localhost:3001/api/study-together/update-state', {
+      await fetch('/api/study-together/update-state', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -769,7 +769,7 @@ const SynchronizedStudySession = forwardRef(({ session, sessionState, user, onEn
       const newPauseState = !isPaused;
       const token = localStorage.getItem('token');
       
-      const response = await fetch('http://localhost:3001/api/study-together/pause', {
+      const response = await fetch('/api/study-together/pause', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -797,7 +797,7 @@ const SynchronizedStudySession = forwardRef(({ session, sessionState, user, onEn
     if (window.confirm('Are you sure you want to stop the session for everyone?')) {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:3001/api/study-together/stop', {
+        const response = await fetch('/api/study-together/stop', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -829,7 +829,7 @@ const SynchronizedStudySession = forwardRef(({ session, sessionState, user, onEn
     if (window.confirm('Are you sure you want to leave the session? Others can continue studying.')) {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:3001/api/study-together/leave', {
+        const response = await fetch('/api/study-together/leave', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,

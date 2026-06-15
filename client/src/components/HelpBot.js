@@ -302,7 +302,7 @@ ${contextContent}
         { role: 'user', content: userMessage }
       ];
 
-      const response = await fetch('http://localhost:3001/api/ai/chat', {
+      const response = await fetch('/api/ai/chat', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

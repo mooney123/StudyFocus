@@ -99,7 +99,7 @@ const StudyTogether = forwardRef(({ user, minimizedSession, setMinimizedSession 
     const restoreMinimizedSession = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:3001/api/study-together/session/${minimizedSession.sessionId}`, {
+        const response = await fetch(`/api/study-together/session/${minimizedSession.sessionId}`, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
@@ -147,7 +147,7 @@ const StudyTogether = forwardRef(({ user, minimizedSession, setMinimizedSession 
   const loadFriends = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3001/api/friends', {
+      const response = await fetch('/api/friends', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -169,7 +169,7 @@ const StudyTogether = forwardRef(({ user, minimizedSession, setMinimizedSession 
   const loadSessions = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3001/api/study-together/sessions', {
+      const response = await fetch('/api/study-together/sessions', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -194,7 +194,7 @@ const StudyTogether = forwardRef(({ user, minimizedSession, setMinimizedSession 
       setSectionMessages(prev => ({ ...prev, schedule: '' }));
       
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3001/api/study-together/schedule', {
+      const response = await fetch('/api/study-together/schedule', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -239,7 +239,7 @@ const StudyTogether = forwardRef(({ user, minimizedSession, setMinimizedSession 
       setSectionMessages(prev => ({ ...prev, pending: '' }));
       
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3001/api/study-together/accept', {
+      const response = await fetch('/api/study-together/accept', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -269,7 +269,7 @@ const StudyTogether = forwardRef(({ user, minimizedSession, setMinimizedSession 
       setSectionMessages(prev => ({ ...prev, pending: '' }));
       
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3001/api/study-together/decline', {
+      const response = await fetch('/api/study-together/decline', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -299,7 +299,7 @@ const StudyTogether = forwardRef(({ user, minimizedSession, setMinimizedSession 
       setSectionMessages(prev => ({ ...prev, upcoming: '' }));
       
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3001/api/study-together/cancel', {
+      const response = await fetch('/api/study-together/cancel', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -329,7 +329,7 @@ const StudyTogether = forwardRef(({ user, minimizedSession, setMinimizedSession 
       setSectionMessages(prev => ({ ...prev, upcoming: '' }));
       
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3001/api/study-together/join', {
+      const response = await fetch('/api/study-together/join', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -366,7 +366,7 @@ const StudyTogether = forwardRef(({ user, minimizedSession, setMinimizedSession 
   const handleStartSession = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3001/api/study-together/start', {
+      const response = await fetch('/api/study-together/start', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -435,7 +435,7 @@ const StudyTogether = forwardRef(({ user, minimizedSession, setMinimizedSession 
     if (currentSession) {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:3001/api/study-together/session/${currentSession.id}`, {
+        const response = await fetch(`/api/study-together/session/${currentSession.id}`, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'

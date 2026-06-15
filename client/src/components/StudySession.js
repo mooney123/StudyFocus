@@ -806,7 +806,7 @@ const StudySession = forwardRef(({ minimizedSession, setMinimizedSession }, ref)
       if (state === lastBlackboardStateRef.current) return; // No changes
 
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:3001/api/study-session/blackboard/${activeSession.id}`, {
+      const response = await fetch(`/api/study-session/blackboard/${activeSession.id}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -842,7 +842,7 @@ const StudySession = forwardRef(({ minimizedSession, setMinimizedSession }, ref)
     
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:3001/api/study-session/blackboard/${activeSession.id}`, {
+      const response = await fetch(`/api/study-session/blackboard/${activeSession.id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

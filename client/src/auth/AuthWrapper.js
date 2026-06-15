@@ -21,7 +21,7 @@ const AuthWrapper = () => {
 
     if (token && userData) {
       // Verify token is still valid
-      fetch('http://localhost:3001/api/auth/verify', {
+      fetch('/api/auth/verify', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

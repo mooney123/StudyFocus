@@ -34,7 +34,7 @@ const Friends = ({ user, setActiveTab }) => {
     try {
       const token = localStorage.getItem('token');
       if (!token) return;
-      const response = await fetch('http://localhost:3001/api/friends', {
+      const response = await fetch('/api/friends', {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (response.ok) {
@@ -101,7 +101,7 @@ const Friends = ({ user, setActiveTab }) => {
         return;
       }
 
-      const response = await fetch('http://localhost:3001/api/friends/send-request', {
+      const response = await fetch('/api/friends/send-request', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -135,7 +135,7 @@ const Friends = ({ user, setActiveTab }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3001/api/friends/accept-request', {
+      const response = await fetch('/api/friends/accept-request', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -165,7 +165,7 @@ const Friends = ({ user, setActiveTab }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3001/api/friends/decline-request', {
+      const response = await fetch('/api/friends/decline-request', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -193,7 +193,7 @@ const Friends = ({ user, setActiveTab }) => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3001/api/friends/cancel-request', {
+      const response = await fetch('/api/friends/cancel-request', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -224,7 +224,7 @@ const Friends = ({ user, setActiveTab }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3001/api/friends/remove', {
+      const response = await fetch('/api/friends/remove', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

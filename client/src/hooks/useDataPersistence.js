@@ -24,7 +24,7 @@ const useDataPersistence = (tabName, initialData = {}) => {
         throw new Error('No authentication token found');
       }
 
-      const response = await fetch(`http://localhost:3001/api/${tabName}`, {
+      const response = await fetch(`/api/${tabName}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -63,7 +63,7 @@ const useDataPersistence = (tabName, initialData = {}) => {
         throw new Error('No authentication token found');
       }
 
-      const response = await fetch(`http://localhost:3001/api/${tabName}`, {
+      const response = await fetch(`/api/${tabName}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

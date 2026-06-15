@@ -45,7 +45,7 @@ const SettingsModal = ({ isOpen, onClose, user, onLogout, initialSection = 'acco
       const token = localStorage.getItem('token');
       if (!token) return;
 
-      const response = await fetch('http://localhost:3001/api/settings', {
+      const response = await fetch('/api/settings', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -70,7 +70,7 @@ const SettingsModal = ({ isOpen, onClose, user, onLogout, initialSection = 'acco
       const token = localStorage.getItem('token');
       if (!token) return;
 
-      const response = await fetch('http://localhost:3001/api/settings', {
+      const response = await fetch('/api/settings', {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

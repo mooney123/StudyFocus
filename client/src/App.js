@@ -49,7 +49,7 @@ function App({ user, onLogout, isNewSignup = false }) {
         const token = localStorage.getItem('token');
         if (!token) return;
 
-        const response = await fetch('http://localhost:3001/api/welcome/status', {
+        const response = await fetch('/api/welcome/status', {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
@@ -86,7 +86,7 @@ function App({ user, onLogout, isNewSignup = false }) {
       const token = localStorage.getItem('token');
       if (!token) return;
 
-      await fetch('http://localhost:3001/api/welcome/status', {
+      await fetch('/api/welcome/status', {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -106,7 +106,7 @@ function App({ user, onLogout, isNewSignup = false }) {
       if (!token) return;
       
       try {
-        const response = await fetch('http://localhost:3001/api/auth/verify', {
+        const response = await fetch('/api/auth/verify', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -315,7 +315,7 @@ function App({ user, onLogout, isNewSignup = false }) {
               try {
                 const sessionId = minimizedSession?.sessionId;
                 const token = localStorage.getItem('token');
-                const response = await fetch('http://localhost:3001/api/study-together/stop', {
+                const response = await fetch('/api/study-together/stop', {
                   method: 'POST',
                   headers: {
                     'Authorization': `Bearer ${token}`,

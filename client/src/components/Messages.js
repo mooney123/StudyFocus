@@ -97,7 +97,7 @@ const Messages = ({ user, setActiveTab }) => {
       if (!token) return;
       
       try {
-        const response = await fetch('http://localhost:3001/api/auth/verify', {
+        const response = await fetch('/api/auth/verify', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -158,7 +158,7 @@ const Messages = ({ user, setActiveTab }) => {
       const token = localStorage.getItem('token');
       if (!token) return true; // Default to enabled if can't check
       
-      const response = await fetch('http://localhost:3001/api/settings', {
+      const response = await fetch('/api/settings', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -212,7 +212,7 @@ const Messages = ({ user, setActiveTab }) => {
         if (!enabled) return;
         
         // Get all conversations
-        const response = await fetch('http://localhost:3001/api/messages/conversations', {
+        const response = await fetch('/api/messages/conversations', {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
@@ -355,7 +355,7 @@ const Messages = ({ user, setActiveTab }) => {
         const token = localStorage.getItem('token');
         if (!token) return;
 
-        const response = await fetch(`http://localhost:3001/api/messages/conversation/${friendId}`, {
+        const response = await fetch(`/api/messages/conversation/${friendId}`, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
@@ -434,7 +434,7 @@ const Messages = ({ user, setActiveTab }) => {
               if (incomingNewMessages.length > 0) {
                 // Mark messages as read if user is viewing this conversation
                 if (selectedConversation && String(selectedConversation.friendId) === friendId) {
-                  fetch('http://localhost:3001/api/messages/mark-read', {
+                  fetch('/api/messages/mark-read', {
                     method: 'POST',
                     headers: {
                       'Authorization': `Bearer ${token}`,
@@ -486,7 +486,7 @@ const Messages = ({ user, setActiveTab }) => {
   const loadConversations = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3001/api/messages/conversations', {
+      const response = await fetch('/api/messages/conversations', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -517,7 +517,7 @@ const Messages = ({ user, setActiveTab }) => {
       
       // Mark messages as read (only if conversation exists)
       try {
-        await fetch('http://localhost:3001/api/messages/mark-read', {
+        await fetch('/api/messages/mark-read', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -531,7 +531,7 @@ const Messages = ({ user, setActiveTab }) => {
       }
 
       // Load conversation messages
-      const response = await fetch(`http://localhost:3001/api/messages/conversation/${friendId}`, {
+      const response = await fetch(`/api/messages/conversation/${friendId}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -660,7 +660,7 @@ const Messages = ({ user, setActiveTab }) => {
         const formData = new FormData();
         formData.append('file', selectedFile);
 
-        const uploadResponse = await fetch('http://localhost:3001/api/messages/upload-file', {
+        const uploadResponse = await fetch('/api/messages/upload-file', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`
@@ -682,7 +682,7 @@ const Messages = ({ user, setActiveTab }) => {
       }
 
       // Send message with file info
-      const response = await fetch('http://localhost:3001/api/messages/send', {
+      const response = await fetch('/api/messages/send', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -756,7 +756,7 @@ const Messages = ({ user, setActiveTab }) => {
         return;
       }
 
-      const response = await fetch(`http://localhost:3001/api/messages/file/${file.filename}`, {
+      const response = await fetch(`/api/messages/file/${file.filename}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -828,7 +828,7 @@ const Messages = ({ user, setActiveTab }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3001/api/messages/edit', {
+      const response = await fetch('/api/messages/edit', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -873,7 +873,7 @@ const Messages = ({ user, setActiveTab }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3001/api/messages/delete', {
+      const response = await fetch('/api/messages/delete', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

@@ -46,7 +46,7 @@ const areMessageNotificationsEnabled = async () => {
     const token = localStorage.getItem('token');
     if (!token) return true; // Default to enabled if can't check
     
-    const response = await fetch('http://localhost:3001/api/settings', {
+    const response = await fetch('/api/settings', {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -120,7 +120,7 @@ const MessageNotifications = ({ activeTab, setActiveTab, currentUserId }) => {
         if (!token) return;
 
         // Get all conversations
-        const response = await fetch('http://localhost:3001/api/messages/conversations', {
+        const response = await fetch('/api/messages/conversations', {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'

@@ -33,7 +33,7 @@ const Leaderboard = ({ user }) => {
         throw new Error('No authentication token found');
       }
 
-      const response = await fetch('http://localhost:3001/api/leaderboard', {
+      const response = await fetch('/api/leaderboard', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

@@ -69,7 +69,7 @@ const WaitingRoom = ({ session, sessionState, user, onStartSession, onJoinSessio
     setIsReady(newReadyState); // Optimistic update for immediate feedback
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3001/api/study-together/ready', {
+      const response = await fetch('/api/study-together/ready', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -106,7 +106,7 @@ const WaitingRoom = ({ session, sessionState, user, onStartSession, onJoinSessio
     }
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3001/api/study-together/start', {
+      const response = await fetch('/api/study-together/start', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

@@ -50,7 +50,7 @@ const StudyFocusAI = () => {
       const token = localStorage.getItem('token');
       if (!token) return null;
 
-      const response = await fetch('http://localhost:3001/api/ai/chat', {
+      const response = await fetch('/api/ai/chat', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -213,7 +213,7 @@ const StudyFocusAI = () => {
           return;
         }
 
-        const verifyResponse = await fetch('http://localhost:3001/api/auth/verify', {
+        const verifyResponse = await fetch('/api/auth/verify', {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
@@ -227,7 +227,7 @@ const StudyFocusAI = () => {
           }
         }
 
-        const response = await fetch('http://localhost:3001/api/ai/user-data', {
+        const response = await fetch('/api/ai/user-data', {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
@@ -612,7 +612,7 @@ You demonstrate strong discipline with consistent evening study sessions.`;
     try {
       const token = localStorage.getItem('token');
       
-      const latestUserDataResponse = await fetch('http://localhost:3001/api/ai/user-data', {
+      const latestUserDataResponse = await fetch('/api/ai/user-data', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -624,7 +624,7 @@ You demonstrate strong discipline with consistent evening study sessions.`;
       const userDataContext = formatUserDataForAI(latestUserData);
       
       // Call backend proxy endpoint instead of OpenAI directly
-      const response = await fetch('http://localhost:3001/api/ai/chat', {
+      const response = await fetch('/api/ai/chat', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -659,7 +659,7 @@ You demonstrate strong discipline with consistent evening study sessions.`;
         
         if (!isValid) {
           // Use backend proxy for repair request as well
-          const repairResponse = await fetch('http://localhost:3001/api/ai/chat', {
+          const repairResponse = await fetch('/api/ai/chat', {
             method: 'POST',
             headers: {
               'Authorization': `Bearer ${token}`,
