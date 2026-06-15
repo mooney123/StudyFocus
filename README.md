@@ -1,5 +1,7 @@
 # StudyFocus - A Notion-like Study Management App
 
+https://studyfocus-152981204337.europe-west1.run.app
+
 A modern, dark-themed study management application inspired by Notion's design, built with React and Node.js. Track your study sessions, collaborate with friends, and stay organized with integrated tools for scheduling, meal planning, and health tracking.
 
 ## ✨ Features
