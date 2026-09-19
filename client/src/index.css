@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* CSS Variables for Theme Support */
 :root {
   /* Dark Theme (Default) */

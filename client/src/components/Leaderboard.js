@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { Badge, Button } from './ui';
 import './Leaderboard.css';
 
 const Leaderboard = ({ user }) => {
@@ -130,6 +131,9 @@ const Leaderboard = ({ user }) => {
       <div className="leaderboard-header">
         <h1>📊 {t('leaderboard.title')}</h1>
         <p>{t('leaderboard.subtitle')}</p>
+        <Button variant="secondary" size="sm" onClick={loadLeaderboardData} className="mt-3">
+          ↻ Refresh
+        </Button>
       </div>
 
       {!Array.isArray(leaderboardData) || leaderboardData.length === 0 ? (
@@ -159,24 +163,35 @@ const Leaderboard = ({ user }) => {
                   <td className="name-cell">
                     <div className="user-info">
                       <span className="user-name">{entry.name}</span>
-                      {entry.userId === user?.id && <span className="you-badge">{t('leaderboard.you')}</span>}
+                      {entry.userId === user?.id && (
+                        <Badge variant="default" className="ml-2">{t('leaderboard.you')}</Badge>
+                      )}
                     </div>
                   </td>
                   <td className="score-cell">
                     <div className="study-score-container">
                       <span className="study-score">{entry.studyScore}/100</span>
-                      <span className="study-level" style={{ color: getStudyScoreLevel(entry.studyScore).color }}>
+                      <Badge
+                        variant={
+                          entry.studyScore >= 80 ? 'success' :
+                          entry.studyScore >= 60 ? 'default' :
+                          entry.studyScore >= 40 ? 'warning' : 'muted'
+                        }
+                        className="mt-1"
+                      >
                         {getStudyScoreLevel(entry.studyScore).emoji} {getStudyScoreLevel(entry.studyScore).level}
-                      </span>
+                      </Badge>
                     </div>
                   </td>
                   <td className="stat-cell">{entry.sessions}</td>
                   <td className="stat-cell">{formatDuration(entry.totalMinutes)}</td>
                   <td className="stat-cell">{formatDuration(entry.averageDuration)}</td>
                   <td className="stat-cell">
-                    <span className={`completion-rate ${entry.completionRate >= 80 ? 'high' : entry.completionRate >= 60 ? 'medium' : 'low'}`}>
+                    <Badge
+                      variant={entry.completionRate >= 80 ? 'success' : entry.completionRate >= 60 ? 'warning' : 'danger'}
+                    >
                       {entry.completionRate}%
-                    </span>
+                    </Badge>
                   </td>
                 </tr>
               ))}

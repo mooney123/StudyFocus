@@ -10,14 +10,18 @@
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "d3": "^7.9.0",
     "html2canvas": "^1.4.1",
     "jspdf": "^4.0.0",
+    "lucide-react": "^1.41.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-markdown": "^10.1.0",
     "react-scripts": "5.0.1",
     "socket.io-client": "^4.8.3",
+    "tailwind-merge": "^3.6.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -44,5 +48,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.5.5",
+    "postcss": "^8.5.28",
+    "tailwindcss": "^3.4.19"
   }
 }

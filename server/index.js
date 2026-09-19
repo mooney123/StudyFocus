@@ -13,7 +13,7 @@ const { Pool } = require('pg');
 
 // Database connection
 const db = new Pool({
-  host: process.env.DB_HOST || '127.0.0.1',
+  host: process.env.DB_HOST || 'localhost',
   port: process.env.DB_PORT || 5432,
   database: process.env.DB_NAME || 'studyfocus',
   user: process.env.DB_USER || 'mooneyfounas',
@@ -704,6 +704,55 @@ const saveStudySessionData = async (userId, data) => {
   }
 };
 
+// Health check (must be before /api/:tab route to avoid route conflicts)
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+// Friends list + pending requests (must be before /api/:tab route to avoid route conflicts)
+app.get('/api/friends', authenticateUser, async (req, res) => {
+  const userId = String(req.user.id);
+  try {
+    // Fetch confirmed friends (join with users for name/email)
+    const friendsResult = await db.query(
+      `SELECT u.id, u.name, u.email, f.added_at
+       FROM friends f
+       JOIN users u ON u.id = f.friend_id
+       WHERE f.user_id = $1`,
+      [userId]
+    );
+    const friends = friendsResult.rows.map(r => ({
+      id: r.id,
+      name: r.name,
+      email: r.email,
+      addedAt: r.added_at
+    }));
+
+    // Fetch pending requests (incoming and outgoing)
+    const reqResult = await db.query(
+      `SELECT * FROM friend_requests
+       WHERE (to_id = $1 OR from_id = $1) AND status = 'pending'`,
+      [userId]
+    );
+    const pendingRequests = reqResult.rows.map(r => ({
+      id: r.id,
+      fromId: r.from_id,
+      fromEmail: r.from_email,
+      fromName: r.from_name,
+      toId: r.to_id,
+      toEmail: r.to_email,
+      status: r.status,
+      sentAt: r.sent_at,
+      ...(r.from_id === userId ? { direction: 'outgoing' } : {})
+    }));
+
+    res.json({ friends, pendingRequests });
+  } catch (err) {
+    console.error('GET /api/friends error:', err);
+    res.status(500).json({ error: 'Failed to fetch friends' });
+  }
+});
+
 app.get('/api/:tab', authenticateUser, async (req, res) => {
   const { tab } = req.params;
   const userId = req.user.id;
@@ -852,11 +901,6 @@ app.put('/api/welcome/status', authenticateUser, async (req, res) => {
     console.error('Error updating welcome status:', err);
     res.status(500).json({ error: 'Failed to update welcome status' });
   }
-});
-
-// Health check
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
 // Study Together routes
@@ -2035,49 +2079,8 @@ app.post('/api/study-session/blackboard/:sessionId', authenticateUser, (req, res
   res.json({ success: true });
 });
 
-// Friends routes
-app.get('/api/friends', authenticateUser, async (req, res) => {
-  const userId = String(req.user.id);
-  try {
-    // Fetch confirmed friends (join with users for name/email)
-    const friendsResult = await db.query(
-      `SELECT u.id, u.name, u.email, f.added_at
-       FROM friends f
-       JOIN users u ON u.id = f.friend_id
-       WHERE f.user_id = $1`,
-      [userId]
-    );
-    const friends = friendsResult.rows.map(r => ({
-      id: r.id,
-      name: r.name,
-      email: r.email,
-      addedAt: r.added_at
-    }));
-
-    // Fetch pending requests (incoming and outgoing)
-    const reqResult = await db.query(
-      `SELECT * FROM friend_requests
-       WHERE (to_id = $1 OR from_id = $1) AND status = 'pending'`,
-      [userId]
-    );
-    const pendingRequests = reqResult.rows.map(r => ({
-      id: r.id,
-      fromId: r.from_id,
-      fromEmail: r.from_email,
-      fromName: r.from_name,
-      toId: r.to_id,
-      toEmail: r.to_email,
-      status: r.status,
-      sentAt: r.sent_at,
-      ...(r.from_id === userId ? { direction: 'outgoing' } : {})
-    }));
-
-    res.json({ friends, pendingRequests });
-  } catch (err) {
-    console.error('GET /api/friends error:', err);
-    res.status(500).json({ error: 'Failed to fetch friends' });
-  }
-});
+// Friends routes (GET /api/friends is registered earlier, alongside /api/ai
+// and /api/leaderboard, so it isn't shadowed by the generic /api/:tab route)
 
 // Send friend request
 app.post('/api/friends/send-request', authenticateUser, async (req, res) => {
@@ -2811,9 +2814,14 @@ if (fs.existsSync(clientBuild)) {
   });
 }
 
-// Start server
-server.listen(PORT, () => {
-  console.log(`🚀 StudyFocus server running on port ${PORT}`);
-  console.log(`📁 Data directory: ${DATA_DIR}`);
-  console.log(`🔌 Socket.IO enabled for real-time presence`);
-});
+// Start server (skipped when this file is required, e.g. by the test suite,
+// so tests can drive `app` with supertest without binding the real port)
+if (require.main === module) {
+  server.listen(PORT, () => {
+    console.log(`🚀 StudyFocus server running on port ${PORT}`);
+    console.log(`📁 Data directory: ${DATA_DIR}`);
+    console.log(`🔌 Socket.IO enabled for real-time presence`);
+  });
+}
+
+module.exports = { app, db, server };
